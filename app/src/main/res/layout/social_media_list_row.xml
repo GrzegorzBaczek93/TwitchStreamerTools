@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="dataObject"
+            type="com.grzegorzbaczek.twitchstreamertools.data.repository.local.SocialMediaEntry" />
+
+        <import type="java.lang.String" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{dataObject.name}"/>
+
+        <TextView
+            android:id="@+id/iconSource"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{dataObject.iconSource}"
+            app:layout_constraintLeft_toRightOf="@+id/name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{dataObject.lastMessage}"
+            app:layout_constraintLeft_toRightOf="@+id/iconSource" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
