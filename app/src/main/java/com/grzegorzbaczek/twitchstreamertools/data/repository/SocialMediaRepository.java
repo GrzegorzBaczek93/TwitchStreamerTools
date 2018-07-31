@@ -3,55 +3,49 @@ package com.grzegorzbaczek.twitchstreamertools.data.repository;
 import com.grzegorzbaczek.twitchstreamertools.Application;
 import com.grzegorzbaczek.twitchstreamertools.data.repository.local.SocialMediaDatabase;
 import com.grzegorzbaczek.twitchstreamertools.data.repository.local.SocialMediaEntry;
+import com.grzegorzbaczek.twitchstreamertools.rx.MyPublishSubject;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Completable;
 import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import io.reactivex.subjects.BehaviorSubject;
 
 public class SocialMediaRepository implements DataRepository {
 
     @Inject
     SocialMediaDatabase database;
 
-    private BehaviorSubject<List<SocialMediaEntry>> listBehaviorSubject = BehaviorSubject.create();
+    private MyPublishSubject<List<SocialMediaEntry>> listSubject;
 
     public SocialMediaRepository() {
         Application.applicationComponent.inject(this);
-        loadItems();
+        setupSubject();
+    }
+
+    private void setupSubject() {
+        listSubject = new MyPublishSubject<List<SocialMediaEntry>>() {
+            @Override
+            public void onSubscribeHandler() {
+                loadItems();
+            }
+        };
     }
 
     @Override
-    public BehaviorSubject<List<SocialMediaEntry>> getSubject() {
-        return listBehaviorSubject;
-    }
-
-    @Override
-    public SocialMediaEntry loadItem(int id) {
-        return null;
-    }
-
-    @Override
-    public void saveItem(SocialMediaEntry entry) {
-        Completable.fromAction(() -> database.socialMediaDao().saveItem(entry))
-                .subscribeOn(Schedulers.io())
-                .subscribe(() -> loadItems());
-    }
-
-    @Override
-    public int removeItem(int id) {
-        return 0;
+    public MyPublishSubject<List<SocialMediaEntry>> getListSubject() {
+        return listSubject;
     }
 
     private void loadItems() {
         Single<List<SocialMediaEntry>> single = database.socialMediaDao().getItems();
         single.subscribeOn(Schedulers.io())
-                .subscribe(list -> listBehaviorSubject.onNext(list),
-                        throwable -> listBehaviorSubject.onError(throwable));
-
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        list -> listSubject.onNext(list),
+                        throwable -> listSubject.onError(throwable)
+                );
     }
 }

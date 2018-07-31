@@ -7,13 +7,19 @@
             name="dataObject"
             type="com.grzegorzbaczek.twitchstreamertools.data.repository.local.SocialMediaEntry" />
 
+        <variable
+            name="handler"
+            type="com.grzegorzbaczek.twitchstreamertools.data.adapter.BaseAdapter.OnClickListener" />
+
         <import type="java.lang.String" />
     </data>
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{()->handler.onItemClick(dataObject.id)}">
 
         <TextView
             android:id="@+id/name"
@@ -26,13 +32,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{dataObject.iconSource}"
-            app:layout_constraintLeft_toRightOf="@+id/name" />
+            app:layout_constraintTop_toBottomOf="@+id/name" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{dataObject.lastMessage}"
-            app:layout_constraintLeft_toRightOf="@+id/iconSource" />
+            app:layout_constraintTop_toBottomOf="@+id/iconSource" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

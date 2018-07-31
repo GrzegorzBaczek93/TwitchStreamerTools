@@ -9,6 +9,16 @@ import android.view.ViewGroup;
 
 public abstract class BaseAdapter extends RecyclerView.Adapter<ViewHolder> {
 
+    private OnClickListener listener;
+
+    public interface OnClickListener {
+        void onItemClick(int itemId);
+    }
+
+    public void setOnItemClickListener(OnClickListener listener) {
+        this.listener = listener;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -20,7 +30,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Object object = getObjForPosition(position);
-        holder.bind(object);
+        holder.bind(object, listener);
     }
 
     @Override

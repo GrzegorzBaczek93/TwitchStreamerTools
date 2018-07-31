@@ -15,6 +15,8 @@ import com.grzegorzbaczek.twitchstreamertools.R;
 import com.grzegorzbaczek.twitchstreamertools.data.adapter.SocialMediaAdapter;
 import com.grzegorzbaczek.twitchstreamertools.data.repository.local.SocialMediaEntry;
 import com.grzegorzbaczek.twitchstreamertools.databinding.FragmentListBinding;
+import com.grzegorzbaczek.twitchstreamertools.ui.activity.MainActivity;
+import com.grzegorzbaczek.twitchstreamertools.ui.message.MessageFragment;
 
 import java.util.List;
 
@@ -24,7 +26,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ListFragment extends Fragment {
 
-    public static final String TAG = "ListFragment";
+    private static final String TAG = "ListFragment";
 
     private ListViewModel viewModel;
     private FragmentListBinding fragmentBinding;
@@ -64,13 +66,18 @@ public class ListFragment extends Fragment {
 
     private void setupAdapter() {
         dataAdapter = new SocialMediaAdapter(R.layout.social_media_list_row);
+        dataAdapter.setOnItemClickListener(this::openMessageView);
         fragmentBinding.socialMediaRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         fragmentBinding.socialMediaRecyclerView.setAdapter(dataAdapter);
     }
 
+    private void openMessageView(int itemId) {
+        getFragmentManager().beginTransaction().replace(MainActivity.FRAGMENT_CONTAINER, MessageFragment.getInstance(itemId)).addToBackStack(null).commit();
+    }
+
     private void setupObserver() {
         dataConsumer = this::swapData;
-        errorConsumer = error -> Log.d(TAG, "Msg: " + error);
+        errorConsumer = error -> Log.d(TAG, "Error: " + error);
     }
 
     private void swapData(List<SocialMediaEntry> entryList) {

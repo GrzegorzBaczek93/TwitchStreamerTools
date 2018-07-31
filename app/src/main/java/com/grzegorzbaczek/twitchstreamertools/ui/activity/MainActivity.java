@@ -8,11 +8,17 @@ import com.grzegorzbaczek.twitchstreamertools.ui.list.ListFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final int FRAGMENT_CONTAINER = R.id.fragment_container;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ListFragment()).commit();
+        setMainFragment();
+    }
+
+    private void setMainFragment() {
+        getSupportFragmentManager().beginTransaction().replace(FRAGMENT_CONTAINER, new ListFragment()).commit();
     }
 }
