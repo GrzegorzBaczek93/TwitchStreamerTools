@@ -14,6 +14,15 @@
         android:layout_height="match_parent"
         tools:context=".ui.list.ListFragment">
 
+        <TextView
+            android:id="@+id/empty_list_overlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="@string/empty_list_overlay_text" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/social_media_recycler_view"
             android:layout_width="match_parent"

@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Twitch Streamer Tools</string>
 
+    <!--List view-->
+    <string name="empty_list_overlay_text">Your social media list is empty.\nTouch me to get started  ( ͡° ͜ʖ ͡°)</string>
+
+    <!--Add account view-->
+    <string name="login">login</string>
+    <string name="password">password</string>
+    <string name="connect">Connect account</string>
 </resources>

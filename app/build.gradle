@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: "androidx.navigation.safeargs"
 
 android {
     compileSdkVersion 28
@@ -35,6 +36,7 @@ ext {
     room_version = '1.1.1'
     constraint_layout_version = '1.1.2'
     lifecycle_version = '1.1.0'
+    navigation_version = '1.0.0-alpha04'
 }
 
 dependencies {
@@ -69,4 +71,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:' + gson_version
 
     implementation 'com.android.support.constraint:constraint-layout:' + constraint_layout_version
+
+    implementation 'android.arch.navigation:navigation-fragment:' + navigation_version
+    implementation 'android.arch.navigation:navigation-ui:' + navigation_version
+
+    androidTestImplementation 'android.arch.navigation:navigation-testing:' + navigation_version
 }

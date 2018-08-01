@@ -17,6 +17,11 @@ public class AddAccountFragment extends Fragment {
     private AddAccountViewModel viewModel;
     private FragmentAddAccountBinding fragmentBinding;
 
+    public static AddAccountFragment getInstance() {
+        AddAccountFragment fragment = new AddAccountFragment();
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -30,5 +35,4 @@ public class AddAccountFragment extends Fragment {
         viewModel = ViewModelProviders.of(this).get(AddAccountViewModel.class);
         fragmentBinding.setViewModel(viewModel);
     }
-
 }

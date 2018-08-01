@@ -15,6 +15,7 @@ import com.grzegorzbaczek.twitchstreamertools.R;
 import com.grzegorzbaczek.twitchstreamertools.data.adapter.SocialMediaAdapter;
 import com.grzegorzbaczek.twitchstreamertools.data.repository.local.SocialMediaEntry;
 import com.grzegorzbaczek.twitchstreamertools.databinding.FragmentListBinding;
+import com.grzegorzbaczek.twitchstreamertools.ui.account.AddAccountFragment;
 import com.grzegorzbaczek.twitchstreamertools.ui.activity.MainActivity;
 import com.grzegorzbaczek.twitchstreamertools.ui.message.MessageFragment;
 
@@ -60,6 +61,7 @@ public class ListFragment extends Fragment {
 
     private void setupBinding(LayoutInflater inflater, ViewGroup container) {
         fragmentBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_list, container, false);
+        fragmentBinding.emptyListOverlay.setOnClickListener(view -> openAddAccountView());
         viewModel = ViewModelProviders.of(this).get(ListViewModel.class);
         fragmentBinding.setViewModel(viewModel);
     }
@@ -69,6 +71,10 @@ public class ListFragment extends Fragment {
         dataAdapter.setOnItemClickListener(this::openMessageView);
         fragmentBinding.socialMediaRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         fragmentBinding.socialMediaRecyclerView.setAdapter(dataAdapter);
+    }
+
+    private void openAddAccountView() {
+        getFragmentManager().beginTransaction().replace(MainActivity.FRAGMENT_CONTAINER, AddAccountFragment.getInstance()).addToBackStack(null).commit();
     }
 
     private void openMessageView(int itemId) {
@@ -81,7 +87,18 @@ public class ListFragment extends Fragment {
     }
 
     private void swapData(List<SocialMediaEntry> entryList) {
-        dataAdapter.setData(entryList);
+        if (entryList.isEmpty()) {
+            setListOverlayVisible(true);
+
+        } else {
+            setListOverlayVisible(false);
+            dataAdapter.setData(entryList);
+        }
+    }
+
+    private void setListOverlayVisible(boolean visible) {
+        fragmentBinding.emptyListOverlay.setVisibility(visible ? View.VISIBLE : View.GONE );
+        fragmentBinding.socialMediaRecyclerView.setVisibility(visible ? View.GONE : View.VISIBLE);
     }
 
     private void subscribeToData() {
