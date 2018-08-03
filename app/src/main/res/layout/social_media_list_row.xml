@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:focusable="true"
-        android:onClick="@{()->handler.onItemClick(dataObject.id)}">
+        android:onClick="@{()->handler.onItemClick()}">
 
         <TextView
             android:id="@+id/name"

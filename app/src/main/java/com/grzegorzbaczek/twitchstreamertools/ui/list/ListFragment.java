@@ -21,6 +21,7 @@ import com.grzegorzbaczek.twitchstreamertools.ui.message.MessageFragment;
 
 import java.util.List;
 
+import androidx.navigation.Navigation;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -41,6 +42,7 @@ public class ListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setupBinding(inflater, container);
+        setupOverlayListener();
         setupAdapter();
         setupObserver();
 
@@ -61,9 +63,16 @@ public class ListFragment extends Fragment {
 
     private void setupBinding(LayoutInflater inflater, ViewGroup container) {
         fragmentBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_list, container, false);
-        fragmentBinding.emptyListOverlay.setOnClickListener(view -> openAddAccountView());
         viewModel = ViewModelProviders.of(this).get(ListViewModel.class);
         fragmentBinding.setViewModel(viewModel);
+    }
+
+    private void setupOverlayListener() {
+        fragmentBinding.emptyListOverlay.setOnClickListener(this::openAddAccountView);
+    }
+
+    private void openAddAccountView(View view) {
+        Navigation.findNavController(view).navigate(R.id.action_listFragment_to_addAccountFragment);
     }
 
     private void setupAdapter() {
@@ -73,12 +82,8 @@ public class ListFragment extends Fragment {
         fragmentBinding.socialMediaRecyclerView.setAdapter(dataAdapter);
     }
 
-    private void openAddAccountView() {
-        getFragmentManager().beginTransaction().replace(MainActivity.FRAGMENT_CONTAINER, AddAccountFragment.getInstance()).addToBackStack(null).commit();
-    }
+    private void openMessageView() {
 
-    private void openMessageView(int itemId) {
-        getFragmentManager().beginTransaction().replace(MainActivity.FRAGMENT_CONTAINER, MessageFragment.getInstance(itemId)).addToBackStack(null).commit();
     }
 
     private void setupObserver() {

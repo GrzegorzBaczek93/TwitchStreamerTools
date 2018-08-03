@@ -12,20 +12,18 @@ import android.view.ViewGroup;
 import com.grzegorzbaczek.twitchstreamertools.R;
 import com.grzegorzbaczek.twitchstreamertools.databinding.FragmentAddAccountBinding;
 
+import androidx.navigation.Navigation;
+
 public class AddAccountFragment extends Fragment {
 
     private AddAccountViewModel viewModel;
     private FragmentAddAccountBinding fragmentBinding;
 
-    public static AddAccountFragment getInstance() {
-        AddAccountFragment fragment = new AddAccountFragment();
-        return fragment;
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setupBinding(inflater, container);
+        setupConnectButtonListener();
 
         return inflater.inflate(R.layout.fragment_add_account, container, false);
     }
@@ -34,5 +32,13 @@ public class AddAccountFragment extends Fragment {
         fragmentBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_account, container, false);
         viewModel = ViewModelProviders.of(this).get(AddAccountViewModel.class);
         fragmentBinding.setViewModel(viewModel);
+    }
+
+    private void setupConnectButtonListener() {
+        fragmentBinding.connectButton.setOnClickListener(this::navigateBack);
+    }
+
+    private void navigateBack(View view) {
+        Navigation.findNavController(view).navigateUp();
     }
 }

@@ -14,32 +14,13 @@ import com.grzegorzbaczek.twitchstreamertools.databinding.FragmentMessageBinding
 
 public class MessageFragment extends Fragment {
 
-    private static final String ITEM_ID = "itemId";
-
     private MessageViewModel viewModel;
     private FragmentMessageBinding binding;
-
-    private int itemId;
-
-    public static MessageFragment getInstance(int itemId) {
-        MessageFragment fragment = new MessageFragment();
-
-        Bundle args = new Bundle();
-        args.putInt(ITEM_ID, itemId);
-        fragment.setArguments(args);
-
-        return fragment;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        if (getArguments() != null) {
-            itemId = getArguments().getInt(ITEM_ID);
-        }
-
-        setupBinding(inflater, container);
+       setupBinding(inflater, container);
 
         return binding.getRoot();
     }

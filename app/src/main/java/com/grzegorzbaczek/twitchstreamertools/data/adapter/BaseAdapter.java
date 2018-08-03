@@ -12,7 +12,7 @@ public abstract class BaseAdapter extends RecyclerView.Adapter<ViewHolder> {
     private OnClickListener listener;
 
     public interface OnClickListener {
-        void onItemClick(int itemId);
+        void onItemClick();
     }
 
     public void setOnItemClickListener(OnClickListener listener) {

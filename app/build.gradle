@@ -37,6 +37,7 @@ ext {
     constraint_layout_version = '1.1.2'
     lifecycle_version = '1.1.0'
     navigation_version = '1.0.0-alpha04'
+    retrofit_version = '2.4.0'
 }
 
 dependencies {
@@ -76,4 +77,8 @@ dependencies {
     implementation 'android.arch.navigation:navigation-ui:' + navigation_version
 
     androidTestImplementation 'android.arch.navigation:navigation-testing:' + navigation_version
+
+    implementation 'com.squareup.retrofit2:retrofit:' + retrofit_version
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:' + retrofit_version
+    implementation 'com.squareup.retrofit2:converter-gson:' + retrofit_version
 }
