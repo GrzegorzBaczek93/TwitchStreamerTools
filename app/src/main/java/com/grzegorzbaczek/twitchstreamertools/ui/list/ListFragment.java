@@ -15,13 +15,11 @@ import com.grzegorzbaczek.twitchstreamertools.R;
 import com.grzegorzbaczek.twitchstreamertools.data.adapter.SocialMediaAdapter;
 import com.grzegorzbaczek.twitchstreamertools.data.repository.local.SocialMediaEntry;
 import com.grzegorzbaczek.twitchstreamertools.databinding.FragmentListBinding;
-import com.grzegorzbaczek.twitchstreamertools.ui.account.AddAccountFragment;
-import com.grzegorzbaczek.twitchstreamertools.ui.activity.MainActivity;
-import com.grzegorzbaczek.twitchstreamertools.ui.message.MessageFragment;
 
 import java.util.List;
 
 import androidx.navigation.Navigation;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
@@ -35,8 +33,6 @@ public class ListFragment extends Fragment {
     private SocialMediaAdapter dataAdapter;
 
     private Disposable listDisposable;
-    private Consumer<Throwable> errorConsumer;
-    private Consumer<List<SocialMediaEntry>> dataConsumer;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,7 +40,6 @@ public class ListFragment extends Fragment {
         setupBinding(inflater, container);
         setupOverlayListener();
         setupAdapter();
-        setupObserver();
 
         return fragmentBinding.getRoot();
     }
@@ -86,11 +81,6 @@ public class ListFragment extends Fragment {
 
     }
 
-    private void setupObserver() {
-        dataConsumer = this::swapData;
-        errorConsumer = error -> Log.d(TAG, "Error: " + error);
-    }
-
     private void swapData(List<SocialMediaEntry> entryList) {
         if (entryList.isEmpty()) {
             setListOverlayVisible(true);
@@ -107,9 +97,10 @@ public class ListFragment extends Fragment {
     }
 
     private void subscribeToData() {
-        listDisposable = viewModel.getSubject()
-                .subscribeOn(Schedulers.computation())
-                .subscribe(dataConsumer, errorConsumer);
+        listDisposable = viewModel.getSocialMediaList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::swapData);
     }
 
     private void unsubscribeFromData() {

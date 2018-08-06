@@ -9,6 +9,9 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.grzegorzbaczek.twitchstreamertools.R;
 
+import net.hockeyapp.android.CrashManager;
+import net.hockeyapp.android.UpdateManager;
+
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -22,6 +25,40 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setupActionToolbar();
         setupHideKeyboardListener();
+
+        checkForUpdates();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // ... your own onResume implementation
+        checkForCrashes();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterManagers();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterManagers();
+    }
+
+    private void checkForCrashes() {
+        CrashManager.register(this, "410044ab235640a6b2ce58b5df2e98e3");
+    }
+
+    private void checkForUpdates() {
+        // Remove this for store builds!
+        UpdateManager.register(this, "410044ab235640a6b2ce58b5df2e98e3");
+    }
+
+    private void unregisterManagers() {
+        UpdateManager.unregister();
     }
 
     private void setupHideKeyboardListener() {

@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: "androidx.navigation.safeargs"
+apply plugin: 'de.felixschulze.gradle.hockeyapp'
 
 android {
     compileSdkVersion 28
@@ -10,6 +11,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [HOCKEYAPP_APP_ID: "410044ab235640a6b2ce58b5df2e98e3"]
     }
     buildTypes {
         release {
@@ -26,6 +28,10 @@ android {
     }
 }
 
+hockeyapp {
+    apiToken = "410044ab235640a6b2ce58b5df2e98e3"
+}
+
 ext {
     support_library_version = '27.1.1'
     multidex_version = '1.0.3'
@@ -38,6 +44,7 @@ ext {
     lifecycle_version = '1.1.0'
     navigation_version = '1.0.0-alpha04'
     retrofit_version = '2.4.0'
+    hockey_version = '5.1.0'
 }
 
 dependencies {
@@ -81,4 +88,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:' + retrofit_version
     implementation 'com.squareup.retrofit2:adapter-rxjava2:' + retrofit_version
     implementation 'com.squareup.retrofit2:converter-gson:' + retrofit_version
+
+    implementation 'net.hockeyapp.android:HockeySDK:' + hockey_version
+
 }
