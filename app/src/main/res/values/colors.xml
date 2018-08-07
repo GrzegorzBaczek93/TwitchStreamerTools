@@ -4,4 +4,22 @@
     <color name="primaryLightColor">#5e3a7e</color>
     <color name="primaryDarkColor">#120029</color>
     <color name="primaryTextColor">#ffffff</color>
+
+    <!--Twitter colors-->
+    <color name="primaryTwitter">#1DA1F2</color>
+    <color name="secondaryTwitter">#14171A</color>
+    <color name="darkGrayTwitter">#657786</color>
+    <color name="lightGrayTwitter">#AAB8C2</color>
+    <color name="extraLightGrayTwitter">#E1E8ED</color>
+    <color name="extraExtraLightGrayTwitter">#F5F8FA</color>
+    <color name="whiteTwitter">#FFFFFF</color>
+
+    <!--Facebook colors-->
+    <color name="primaryFacebook">#4267b2</color>
+    <color name="whiteFacebook">#FFFFFF</color>
+
+    <!--Twitch colors-->
+    <color name="primaryTwitch">#6441A4</color>
+    <color name="whiteTwitch">#FFFFFF</color>
+
 </resources>

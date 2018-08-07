@@ -8,4 +8,10 @@
     <string name="login">login</string>
     <string name="password">password</string>
     <string name="connect">Connect account</string>
+
+    <!--Select account type view-->
+    <string name="sign_in_with_twitter">Sign in with Twitter</string>
+    <string name="sign_in_with_facebook">Sign in with Facebook</string>
+    <string name="sign_in_with_twitch">Sign in with Twitch</string>
+
 </resources>

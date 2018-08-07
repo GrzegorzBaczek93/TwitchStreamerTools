@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.account.SelectAccountTypeFragment">
+
+    <android.support.design.button.MaterialButton
+        android:id="@+id/SignInTwitchButton"
+        style="@style/SingInWithButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primaryTwitch"
+        android:text="@string/sign_in_with_twitch"
+        android:textColor="@color/whiteTwitch"
+        app:icon="@drawable/ic_twitch_icon"
+        app:iconTint="@color/whiteTwitch"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.button.MaterialButton
+        android:id="@+id/SignInTwitterButton"
+        style="@style/SingInWithButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primaryTwitter"
+        android:text="@string/sign_in_with_twitter"
+        android:textColor="@color/whiteTwitter"
+        app:icon="@drawable/ic_twitter_icon"
+        app:iconTint="@color/whiteTwitter"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/SignInTwitchButton" />
+
+    <android.support.design.button.MaterialButton
+        android:id="@+id/SignInFacebookButton"
+        style="@style/SingInWithButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primaryFacebook"
+        android:text="@string/sign_in_with_facebook"
+        android:textColor="@color/whiteFacebook"
+        app:icon="@drawable/ic_facebook_icon"
+        app:iconTint="@color/whiteFacebook"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/SignInTwitterButton" />
+
+</android.support.constraint.ConstraintLayout>

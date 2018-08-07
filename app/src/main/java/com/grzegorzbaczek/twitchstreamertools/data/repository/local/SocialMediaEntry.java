@@ -12,11 +12,11 @@ public class SocialMediaEntry {
     public int id;
 
     @ColumnInfo(name = "name")
-    public String name = "data loading error";
+    public String name = "error";
 
     @ColumnInfo(name = "icon_source")
-    public String iconSource = "data loading error";
+    public String iconSource = "error";
 
     @ColumnInfo(name = "last_message")
-    public String lastMessage = "data loading error";
+    public String lastMessage = "error";
 }
