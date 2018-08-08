@@ -1,4 +1,4 @@
-package com.grzegorzbaczek.twitchstreamertools.ui.message;
+package com.grzegorzbaczek.twitchstreamertools.ui.detail;
 
 
 import android.arch.lifecycle.ViewModelProviders;
@@ -10,24 +10,24 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.grzegorzbaczek.twitchstreamertools.R;
-import com.grzegorzbaczek.twitchstreamertools.databinding.FragmentMessageBinding;
+import com.grzegorzbaczek.twitchstreamertools.databinding.FragmentDetailAccountBinding;
 
-public class MessageFragment extends Fragment {
+public class DetailAccountFragment extends Fragment {
 
-    private MessageViewModel viewModel;
-    private FragmentMessageBinding binding;
+    private DetailAccountViewModel viewModel;
+    private FragmentDetailAccountBinding binding;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       setupBinding(inflater, container);
+        setupBinding(inflater, container);
 
         return binding.getRoot();
     }
 
     private void setupBinding(LayoutInflater inflater, ViewGroup container) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_message, container, false);
-        viewModel = ViewModelProviders.of(this).get(MessageViewModel.class);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail_account, container, false);
+        viewModel = ViewModelProviders.of(this).get(DetailAccountViewModel.class);
         binding.setViewModel(viewModel);
     }
 

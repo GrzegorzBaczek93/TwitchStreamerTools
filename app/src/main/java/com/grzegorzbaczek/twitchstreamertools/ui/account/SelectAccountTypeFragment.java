@@ -7,8 +7,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.grzegorzbaczek.twitchstreamertools.R;
+
+import androidx.navigation.Navigation;
 
 public class SelectAccountTypeFragment extends Fragment {
 
@@ -21,8 +24,15 @@ public class SelectAccountTypeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_select_account_type, container, false);
+
+        View rootView = inflater.inflate(R.layout.fragment_select_account_type, container, false);
+
+        Button button = rootView.findViewById(R.id.SignInTwitterButton);
+        button.setOnClickListener(view -> {
+            Navigation.findNavController(view).navigate(R.id.action_selectAccountTypeFragment_to_addAccountFragment);
+        });
+
+        return rootView;
     }
 
 }

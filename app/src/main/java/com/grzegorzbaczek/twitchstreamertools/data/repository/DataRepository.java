@@ -11,5 +11,9 @@ public interface DataRepository {
 
    Single<List<SocialMediaEntry>> getSocialMediaList();
 
+   Single<SocialMediaEntry> getSocialMediaItem(int socialMediaItemId);
+
    Completable insertSocialMediaItem(SocialMediaEntry socialMediaEntry);
+
+   Completable removeSocialMediaItem(int socialMediaItemId);
 }

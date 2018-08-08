@@ -21,12 +21,9 @@ import java.util.List;
 import androidx.navigation.Navigation;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class ListFragment extends Fragment {
-
-    private static final String TAG = "ListFragment";
 
     private ListViewModel viewModel;
     private FragmentListBinding fragmentBinding;
@@ -78,7 +75,7 @@ public class ListFragment extends Fragment {
     }
 
     private void openMessageView() {
-
+        Navigation.findNavController(getView()).navigate(R.id.action_listFragment_to_messageFragment);
     }
 
     private void swapData(List<SocialMediaEntry> entryList) {

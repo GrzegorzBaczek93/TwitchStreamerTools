@@ -34,7 +34,7 @@ public class AddAccountFragment extends Fragment {
     }
 
     private void setupBinding(LayoutInflater inflater, ViewGroup container) {
-//        fragmentBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_account, container, false);
+        fragmentBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_account, container, false);
         viewModel = ViewModelProviders.of(this).get(AddAccountViewModel.class);
         fragmentBinding.setViewModel(viewModel);
     }
@@ -55,7 +55,7 @@ public class AddAccountFragment extends Fragment {
 
                     @Override
                     public void onComplete() {
-                        Navigation.findNavController(view).navigateUp();
+                        Navigation.findNavController(view).popBackStack(R.id.listFragment, false);
                         //TODO: Obsluga bledow, nawigacja postepu, dokonczenie odpowiedniego flow apki
                     }
 

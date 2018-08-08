@@ -26,9 +26,21 @@ public class SocialMediaRepository implements DataRepository {
     }
 
     @Override
+    public Single<SocialMediaEntry> getSocialMediaItem(int socialMediaItemId) {
+        return database.socialMediaDao().getItemById(socialMediaItemId);
+    }
+
+    @Override
     public Completable insertSocialMediaItem(SocialMediaEntry socialMediaEntry) {
         return Completable.fromAction(() ->
                 database.socialMediaDao().saveItem(socialMediaEntry)
+        );
+    }
+
+    @Override
+    public Completable removeSocialMediaItem(int socialMediaItemId) {
+        return Completable.fromAction(() ->
+                database.socialMediaDao().removeById(socialMediaItemId)
         );
     }
 }
