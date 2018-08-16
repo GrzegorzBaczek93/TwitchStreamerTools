@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.grzegorzbaczek.twitchstreamertools.R;
+import com.grzegorzbaczek.twitchstreamertools.data.repository.AccountType;
 import com.grzegorzbaczek.twitchstreamertools.data.repository.local.SocialMediaEntry;
 import com.grzegorzbaczek.twitchstreamertools.databinding.FragmentAddAccountBinding;
 
@@ -21,6 +22,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class AddAccountFragment extends Fragment {
 
+    int type;
     private AddAccountViewModel viewModel;
     private FragmentAddAccountBinding fragmentBinding;
 
@@ -29,6 +31,8 @@ public class AddAccountFragment extends Fragment {
                              Bundle savedInstanceState) {
         setupBinding(inflater, container);
         setupConnectButtonListener();
+
+        type = AddAccountFragmentArgs.fromBundle(getArguments()).getAccountType();
 
         return fragmentBinding.getRoot();
     }

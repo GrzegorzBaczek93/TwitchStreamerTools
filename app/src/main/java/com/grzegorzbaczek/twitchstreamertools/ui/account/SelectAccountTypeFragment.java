@@ -2,7 +2,6 @@ package com.grzegorzbaczek.twitchstreamertools.ui.account;
 
 
 import android.os.Bundle;
-
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +14,9 @@ import androidx.navigation.Navigation;
 
 public class SelectAccountTypeFragment extends Fragment {
 
+    Button twitterButton;
+    Button twitchButton;
+    Button facebookButton;
 
     public SelectAccountTypeFragment() {
         // Required empty public constructor
@@ -27,12 +29,27 @@ public class SelectAccountTypeFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_select_account_type, container, false);
 
-        Button button = rootView.findViewById(R.id.SignInTwitterButton);
-        button.setOnClickListener(view -> {
-            Navigation.findNavController(view).navigate(R.id.action_selectAccountTypeFragment_to_addAccountFragment);
-        });
+        setupButtons(rootView);
+        setupListeners();
 
         return rootView;
     }
 
+    private void setupListeners() {
+        twitterButton.setOnClickListener(view -> openAddAccountView(0));
+        twitchButton.setOnClickListener(view -> openAddAccountView(1));
+        facebookButton.setOnClickListener(view -> openAddAccountView(2));
+    }
+
+    private void setupButtons(View rootView) {
+        twitterButton = rootView.findViewById(R.id.SignInTwitterButton);
+        twitchButton = rootView.findViewById(R.id.SignInTwitchButton);
+        facebookButton = rootView.findViewById(R.id.SignInFacebookButton);
+    }
+
+    private void openAddAccountView(int type) {
+        SelectAccountTypeFragmentDirections.ActionSelectAccountTypeFragmentToAddAccountFragment action = SelectAccountTypeFragmentDirections.actionSelectAccountTypeFragmentToAddAccountFragment();
+        action.setAccountType(type);
+        Navigation.findNavController(getView()).navigate(action);
+    }
 }

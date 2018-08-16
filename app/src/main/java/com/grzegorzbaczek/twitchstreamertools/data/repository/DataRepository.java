@@ -5,11 +5,12 @@ import com.grzegorzbaczek.twitchstreamertools.data.repository.local.SocialMediaE
 import java.util.List;
 
 import io.reactivex.Completable;
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 public interface DataRepository {
 
-   Single<List<SocialMediaEntry>> getSocialMediaList();
+   Flowable<List<SocialMediaEntry>> getSocialMediaList();
 
    Single<SocialMediaEntry> getSocialMediaItem(int socialMediaItemId);
 

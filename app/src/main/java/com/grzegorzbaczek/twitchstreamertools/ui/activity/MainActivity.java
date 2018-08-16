@@ -2,9 +2,14 @@ package com.grzegorzbaczek.twitchstreamertools.ui.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 
 import com.grzegorzbaczek.twitchstreamertools.R;
@@ -21,7 +26,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupActionToolbar();
+        setupBottomNavigationView();
         setupHideKeyboardListener();
+    }
+
+    private void setupBottomNavigationView() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
+        bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
+            switch (menuItem.getItemId()) {
+                case R.id.accounts_action:
+                    break;
+                case R.id.message_action:
+                    break;
+                case R.id.chat_action:
+                    break;
+
+                    //TODO: odpowiednia nawigacja pomiedzy fragmentami
+            }
+            return true;
+        });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        return Navigation.findNavController(this, R.id.nav_host_fragment).navigateUp();
     }
 
     private void setupHideKeyboardListener() {
@@ -44,11 +72,4 @@ public class MainActivity extends AppCompatActivity {
 
         NavigationUI.setupActionBarWithNavController(this, navController);
     }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        return Navigation.findNavController(this, R.id.nav_host_fragment).navigateUp();
-    }
-
-
 }

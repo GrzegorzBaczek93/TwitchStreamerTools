@@ -9,6 +9,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Completable;
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 public class SocialMediaRepository implements DataRepository {
@@ -21,7 +22,7 @@ public class SocialMediaRepository implements DataRepository {
     }
 
     @Override
-    public Single<List<SocialMediaEntry>> getSocialMediaList() {
+    public Flowable<List<SocialMediaEntry>> getSocialMediaList() {
         return database.socialMediaDao().getItems();
     }
 

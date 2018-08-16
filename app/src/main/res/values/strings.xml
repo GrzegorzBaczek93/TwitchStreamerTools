@@ -1,8 +1,13 @@
 <resources>
+    <!--Activity-->
     <string name="app_name">Twitch Streamer Tools</string>
+    <string name="accounts_action_label">Accounts</string>
+    <string name="message_action_label">Message</string>
+    <string name="chat_action_label">Chat</string>
 
     <!--List view-->
-    <string name="empty_list_overlay_text">Your social media list is empty.\nTouch me to get started  ( ͡° ͜ʖ ͡°)</string>
+    <string name="empty_list_overlay">Your social media list is empty.\nTouch me to get started  ( ͡° ͜ʖ ͡°)</string>
+    <string name="add_item_label">Link account</string>
 
     <!--Add account view-->
     <string name="login">login</string>
@@ -14,8 +19,10 @@
     <string name="sign_in_facebook">Link Facebook account</string>
     <string name="sign_in_twitch">Link Twitch account</string>
 
-    <!--Toolbar account menu items-->
-    <string name="menu_item_sign_out">Sign out</string>
-    <string name="menu_item_delete_account">Delete account</string>
+    <!--Detail view-->
+    <string name="no_data_loaded_overlay">Couldn\'t load your account ( ͡° ʖ̯ ͡°)</string>
+
+    <!--Placeholders for testing-->
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
 
 </resources>

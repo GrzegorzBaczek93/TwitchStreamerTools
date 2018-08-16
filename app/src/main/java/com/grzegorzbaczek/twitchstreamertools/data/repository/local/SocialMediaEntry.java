@@ -3,6 +3,9 @@ package com.grzegorzbaczek.twitchstreamertools.data.repository.local;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.v4.graphics.drawable.IconCompat;
+
+import com.grzegorzbaczek.twitchstreamertools.R;
 
 @Entity(tableName = "SocialMediaItems")
 public class SocialMediaEntry {
@@ -12,11 +15,8 @@ public class SocialMediaEntry {
     public int id;
 
     @ColumnInfo(name = "name")
-    public String name = "error";
+    public String name = "Name placeholder";
 
     @ColumnInfo(name = "icon_source")
-    public String iconSource = "error";
-
-    @ColumnInfo(name = "last_message")
-    public String lastMessage = "error";
+    public int iconSource = R.drawable.ic_twitter_color_icon;
 }

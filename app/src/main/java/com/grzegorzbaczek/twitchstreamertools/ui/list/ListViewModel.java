@@ -10,7 +10,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Single;
+import io.reactivex.Completable;
+import io.reactivex.Flowable;
 
 public class ListViewModel extends ViewModel {
 
@@ -21,7 +22,11 @@ public class ListViewModel extends ViewModel {
         Application.applicationComponent.inject(this);
     }
 
-    public Single<List<SocialMediaEntry>> getSocialMediaList() {
+    public Flowable<List<SocialMediaEntry>> getSocialMediaList() {
         return socialMediaRepository.getSocialMediaList();
+    }
+
+    public Completable removeSocialMediaItem(int itemId) {
+        return socialMediaRepository.removeSocialMediaItem(itemId);
     }
 }

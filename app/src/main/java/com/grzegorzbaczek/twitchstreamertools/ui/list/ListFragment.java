@@ -5,9 +5,12 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,6 +22,7 @@ import com.grzegorzbaczek.twitchstreamertools.databinding.FragmentListBinding;
 import java.util.List;
 
 import androidx.navigation.Navigation;
+import io.reactivex.CompletableObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -38,6 +42,7 @@ public class ListFragment extends Fragment {
         setupOverlayListener();
         setupAdapter();
 
+        setHasOptionsMenu(true);
         return fragmentBinding.getRoot();
     }
 
@@ -51,6 +56,22 @@ public class ListFragment extends Fragment {
     public void onStop() {
         unsubscribeFromData();
         super.onStop();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.list_fragment_menu, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.add_account_item) {
+            openAddAccountView(getView());
+            return true;
+        }
+
+        return false;
     }
 
     private void setupBinding(LayoutInflater inflater, ViewGroup container) {
@@ -69,13 +90,16 @@ public class ListFragment extends Fragment {
 
     private void setupAdapter() {
         dataAdapter = new SocialMediaAdapter(R.layout.social_media_list_row);
-        dataAdapter.setOnItemClickListener(this::openMessageView);
-        fragmentBinding.socialMediaRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        dataAdapter.setOnItemClickListener(this::removeItem);
+        LinearLayoutManager ll = new LinearLayoutManager(getContext());
+        DividerItemDecoration decoration = new DividerItemDecoration(fragmentBinding.socialMediaRecyclerView.getContext(), ll.getOrientation());
+        fragmentBinding.socialMediaRecyclerView.addItemDecoration(decoration);
+        fragmentBinding.socialMediaRecyclerView.setLayoutManager(ll);
         fragmentBinding.socialMediaRecyclerView.setAdapter(dataAdapter);
     }
 
-    private void openMessageView() {
-        Navigation.findNavController(getView()).navigate(R.id.action_listFragment_to_messageFragment);
+    private void removeItem(int itemId) {
+        viewModel.removeSocialMediaItem(itemId).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe();
     }
 
     private void swapData(List<SocialMediaEntry> entryList) {

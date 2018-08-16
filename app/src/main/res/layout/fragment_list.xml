@@ -21,7 +21,7 @@
             android:clickable="true"
             android:focusable="true"
             android:gravity="center"
-            android:text="@string/empty_list_overlay_text" />
+            android:text="@string/empty_list_overlay" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/social_media_recycler_view"

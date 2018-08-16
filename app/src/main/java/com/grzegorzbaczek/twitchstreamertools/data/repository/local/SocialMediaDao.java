@@ -14,7 +14,7 @@ import io.reactivex.Single;
 public interface SocialMediaDao {
 
     @Query("SELECT * FROM socialMediaItems")
-    Single<List<SocialMediaEntry>> getItems();
+    Flowable<List<SocialMediaEntry>> getItems();
 
     @Query("SELECT * FROM socialMediaItems WHERE id = :id")
     Single<SocialMediaEntry> getItemById(int id);
