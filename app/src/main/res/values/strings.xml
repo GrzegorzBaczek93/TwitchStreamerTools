@@ -22,6 +22,12 @@
     <!--Detail view-->
     <string name="no_data_loaded_overlay">Couldn\'t load your account ( ͡° ʖ̯ ͡°)</string>
 
+    <!--Dialogs-->
+    <string name="dialog_confirm_label">Confirm</string>
+    <string name="dialog_cancel_label">Cancel</string>
+    <string name="remove_item_dialog_title">Remove account?</string>
+    <string name="remove_item_dialog_message">This will permanently remove selected account from this device.</string>
+
     <!--Placeholders for testing-->
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
 

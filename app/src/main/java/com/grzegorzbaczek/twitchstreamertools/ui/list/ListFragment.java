@@ -2,9 +2,11 @@ package com.grzegorzbaczek.twitchstreamertools.ui.list;
 
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
@@ -90,12 +92,24 @@ public class ListFragment extends Fragment {
 
     private void setupAdapter() {
         dataAdapter = new SocialMediaAdapter(R.layout.social_media_list_row);
-        dataAdapter.setOnItemClickListener(this::removeItem);
+        dataAdapter.setOnItemClickListener(this::displayRemoveItemAlertDialog);
         LinearLayoutManager ll = new LinearLayoutManager(getContext());
         DividerItemDecoration decoration = new DividerItemDecoration(fragmentBinding.socialMediaRecyclerView.getContext(), ll.getOrientation());
         fragmentBinding.socialMediaRecyclerView.addItemDecoration(decoration);
         fragmentBinding.socialMediaRecyclerView.setLayoutManager(ll);
         fragmentBinding.socialMediaRecyclerView.setAdapter(dataAdapter);
+    }
+
+    private void displayRemoveItemAlertDialog(int itemId) {
+        AlertDialog dialog = new AlertDialog.Builder(this.getContext())
+                .setTitle(R.string.remove_item_dialog_title)
+                .setMessage(R.string.remove_item_dialog_message)
+                .setPositiveButton(R.string.dialog_confirm_label, (dialogInterface, i) -> removeItem(itemId))
+                .setNegativeButton(R.string.dialog_cancel_label, ((dialogInterface, i) -> dialogInterface.dismiss()))
+                .create();
+
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
     }
 
     private void removeItem(int itemId) {

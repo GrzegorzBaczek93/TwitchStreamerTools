@@ -33,12 +33,16 @@ public class MainActivity extends AppCompatActivity {
     private void setupActionToolbar() {
         Toolbar toolbar = findViewById(R.id.app_toolbar);
         setSupportActionBar(toolbar);
-        NavigationUI.setupActionBarWithNavController(this, getNavController());
     }
 
     private void setupBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
         NavigationUI.setupWithNavController(bottomNavigationView, getNavController());
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     @Override
