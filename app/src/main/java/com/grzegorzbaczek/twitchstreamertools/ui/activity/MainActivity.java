@@ -30,30 +30,28 @@ public class MainActivity extends AppCompatActivity {
         setupHideKeyboardListener();
     }
 
+    private void setupActionToolbar() {
+        Toolbar toolbar = findViewById(R.id.app_toolbar);
+        setSupportActionBar(toolbar);
+        NavigationUI.setupActionBarWithNavController(this, getNavController());
+    }
+
     private void setupBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation_view);
-        bottomNavigationView.setOnNavigationItemSelectedListener(menuItem -> {
-            switch (menuItem.getItemId()) {
-                case R.id.accounts_action:
-                    break;
-                case R.id.message_action:
-                    break;
-                case R.id.chat_action:
-                    break;
-
-                    //TODO: odpowiednia nawigacja pomiedzy fragmentami
-            }
-            return true;
-        });
+        NavigationUI.setupWithNavController(bottomNavigationView, getNavController());
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        return Navigation.findNavController(this, R.id.nav_host_fragment).navigateUp();
+        return getNavController().navigateUp();
     }
 
     private void setupHideKeyboardListener() {
-        Navigation.findNavController(this, R.id.nav_host_fragment).addOnNavigatedListener((controller, destination) -> hideSoftKeyboard());
+        getNavController().addOnNavigatedListener((controller, destination) -> hideSoftKeyboard());
+    }
+
+    private NavController getNavController() {
+        return Navigation.findNavController(this, R.id.nav_host_fragment);
     }
 
     private void hideSoftKeyboard() {
@@ -61,15 +59,5 @@ public class MainActivity extends AppCompatActivity {
         if (this.getCurrentFocus() != null && inputMethodManager != null) {
             inputMethodManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
         }
-    }
-
-    private void setupActionToolbar() {
-        Toolbar toolbar = findViewById(R.id.app_toolbar);
-        setSupportActionBar(toolbar);
-
-        Fragment hostFragment = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-        NavController navController = ((NavHostFragment) hostFragment).getNavController();
-
-        NavigationUI.setupActionBarWithNavController(this, navController);
     }
 }

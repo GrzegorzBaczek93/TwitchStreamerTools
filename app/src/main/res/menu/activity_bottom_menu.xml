@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/accounts_action"
+        android:id="@id/listFragment"
         android:enabled="true"
         android:icon="@drawable/ic_accounts_white_icon"
         android:title="@string/accounts_action_label"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/message_action"
+        android:id="@id/messageFragment"
         android:enabled="true"
         android:icon="@drawable/ic_message_white_icon"
         android:title="@string/message_action_label"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/chat_action"
+        android:id="@id/chatFragment"
         android:enabled="true"
         android:icon="@drawable/ic_chat_white_icon"
         android:title="@string/chat_action_label"
