@@ -29,7 +29,6 @@ public class MessageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setupBinding(inflater,container);
-
         setHasOptionsMenu(true);
         return binding.getRoot();
     }
@@ -67,8 +66,7 @@ public class MessageFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == FILE_REQUEST_CODE && resultCode == RESULT_OK) {
-            String filePath = data.getData().getPath();
-            //TODO: Zaimplementowac dalsza obsluge linkowania pliku do wiadomosci
+            viewModel.imageData.set(data.getData());
         }
     }
 }

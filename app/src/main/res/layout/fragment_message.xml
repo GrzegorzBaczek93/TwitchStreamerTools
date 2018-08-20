@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+        <import type="android.view.View" />
 
         <variable
             name="viewModel"
@@ -9,22 +11,55 @@
     </data>
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="8dp"
         tools:context=".ui.message.MessageFragment">
 
         <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/appCompatEditText"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:id="@+id/message_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Message text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/attached_image_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_small"
+            android:text="Attached image:"
+            android:visibility="@{viewModel.imageData == null ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toStartOf="@id/remove_attachment_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/message_text_view" />
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/remove_attachment_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_margin="@dimen/margin_small"
+            android:onClick="@{() -> viewModel.resetImageData()}"
+            android:src="@drawable/ic_remove_attachment_color_icon"
+            android:visibility="@{viewModel.imageData == null ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/attached_image_label"
+            app:layout_constraintTop_toBottomOf="@id/message_text_view" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/attached_item_view"
+            android:layout_width="wrap_content"
+            android:layout_height="128dp"
+            android:layout_margin="@dimen/margin_small"
+            android:src="@{viewModel.imageData.get()}"
+            android:visibility="@{viewModel.imageData == null ? View.GONE : View.VISIBLE}"
+            app:layout_constraintTop_toBottomOf="@id/attached_image_label"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>
