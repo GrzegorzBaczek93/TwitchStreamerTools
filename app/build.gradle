@@ -36,7 +36,7 @@ ext {
     room_version = '1.1.1'
     constraint_layout_version = '1.1.2'
     lifecycle_version = '1.1.0'
-    navigation_version = '1.0.0-alpha04'
+    navigation_version = '1.0.0-alpha05'
     retrofit_version = '2.4.0'
     material_version = '1.0.0-beta01'
 }
