@@ -2,6 +2,7 @@ package com.grzegorzbaczek.twitchstreamertools.ui.message;
 
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,7 +16,11 @@ import android.view.ViewGroup;
 import com.grzegorzbaczek.twitchstreamertools.R;
 import com.grzegorzbaczek.twitchstreamertools.databinding.FragmentMessageBinding;
 
+import static android.app.Activity.RESULT_OK;
+
 public class MessageFragment extends Fragment {
+
+    private static final int FILE_REQUEST_CODE = 1;
 
     private MessageViewModel viewModel;
     private FragmentMessageBinding binding;
@@ -37,7 +42,13 @@ public class MessageFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
+        switch (item.getItemId()) {
+            case R.id.send_message_item:
+                break;
+            case R.id.attach_file_item:
+                    startActivityForFile();
+                return true;
+        }
         return false;
     }
 
@@ -47,4 +58,17 @@ public class MessageFragment extends Fragment {
         binding.setViewModel(viewModel);
     }
 
+    private void startActivityForFile() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent, FILE_REQUEST_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == FILE_REQUEST_CODE && resultCode == RESULT_OK) {
+            String filePath = data.getData().getPath();
+            //TODO: Zaimplementowac dalsza obsluge linkowania pliku do wiadomosci
+        }
+    }
 }

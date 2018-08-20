@@ -20,7 +20,8 @@
     <string name="sign_in_twitch">Link Twitch account</string>
 
     <!--Message view-->
-    <string name="send_message_label">Send messagez </string>
+    <string name="send_message_label">Send message</string>
+    <string name="attach_file_label">Attach file</string>
 
     <!--Detail view-->
     <string name="no_data_loaded_overlay">Couldn\'t load your account ( ͡° ʖ̯ ͡°)</string>

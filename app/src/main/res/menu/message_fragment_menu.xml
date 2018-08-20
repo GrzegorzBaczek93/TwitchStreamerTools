@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/attach_file_item"
+        android:icon="@drawable/ic_attach_file_white_icon"
+        app:showAsAction="ifRoom"
+        android:title="@string/attach_file_label" />
     <item
         android:id="@+id/send_message_item"
         android:icon="@drawable/ic_send_white_icon"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:title="@string/send_message_label"/>
 </menu>
