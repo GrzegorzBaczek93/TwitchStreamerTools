@@ -31,6 +31,8 @@
     <string name="dialog_cancel_label">Cancel</string>
     <string name="remove_item_dialog_title">Remove account?</string>
     <string name="remove_item_dialog_message">This will permanently remove selected account from this device.</string>
+    <string name="send_item_dialog_title">Send message?</string>
+    <string name="send_item_dialog_message">After sending message, you won\'t be able to change it.</string>
 
     <!--Placeholders for testing-->
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>

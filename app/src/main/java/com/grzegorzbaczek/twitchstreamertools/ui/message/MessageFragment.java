@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,12 +44,27 @@ public class MessageFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.send_message_item:
-                break;
+                    displaySendItemAlertDialog();
+                return true;
             case R.id.attach_file_item:
                     startActivityForFile();
                 return true;
         }
         return false;
+    }
+
+    private void displaySendItemAlertDialog() {
+        AlertDialog dialog = new AlertDialog.Builder(this.getContext())
+                .setTitle(R.string.send_item_dialog_title)
+                .setMessage(R.string.send_item_dialog_message)
+                .setPositiveButton(R.string.dialog_confirm_label, (dialogInterface, i) -> {
+                    //TODO: Zaimplementować wysyłanie wiadomości
+                })
+                .setNegativeButton(R.string.dialog_cancel_label, (dialogInterface, i) -> dialogInterface.dismiss())
+                .create();
+
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
     }
 
     private void setupBinding(LayoutInflater inflater, ViewGroup container) {
