@@ -2,7 +2,6 @@ package com.grzegorzbaczek.twitchstreamertools.ui.list;
 
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.DialogInterface;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,7 +23,6 @@ import com.grzegorzbaczek.twitchstreamertools.databinding.FragmentListBinding;
 import java.util.List;
 
 import androidx.navigation.Navigation;
-import io.reactivex.CompletableObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
