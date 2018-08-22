@@ -7,15 +7,21 @@
     android:orientation="vertical"
     tools:context=".ui.activity.MainActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/app_toolbar"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_toolbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primaryColor"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/app_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primaryColor"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark" />
+    </android.support.design.widget.AppBarLayout>
 
     <fragment
         android:id="@+id/nav_host_fragment"
@@ -26,7 +32,7 @@
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/app_toolbar"
+        app:layout_constraintTop_toBottomOf="@id/app_toolbar_layout"
         app:navGraph="@navigation/nav_graph" />
 
     <android.support.design.widget.BottomNavigationView
